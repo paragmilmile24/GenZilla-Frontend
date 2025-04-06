@@ -1,33 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductDetail.scss";
 import dummyImg from "../../assets/product.jpg";
 import { useParams } from "react-router-dom";
+import { axiosClient } from "../../utils/axiosClient";
 
 function ProductDetail() {
     const params = useParams();
+    const [product, setProduct] = useState(null);
     // console.log("params", params);
+    // const productKey = params.productId;
+
+    async function fetchData() {
+        const productResponse = await axiosClient.get(
+            `/products?filters[key][$eq]=${params.productId}&populate=image`
+        );
+        console.log("Product Response:", productResponse.data.data);
+        if (productResponse.data.data.length > 0) {
+            setProduct(productResponse.data.data[0]);
+        }
+    }
+
+    useEffect(() => {
+        setProduct(null);
+        fetchData();
+    }, [params]);
+
+    if (!product) {
+        return <div className="loading">Loading...</div>;
+    }
     return (
         <div className="ProductDetail">
             <div className="container">
                 <div className="product-layout">
                     <div className="product-img">
-                        <img src={dummyImg} alt="" />
+                        <img src={product?.image?.url} alt="" />
                     </div>
                     <div className="product-info">
                         <h1 className="heading">
-                            Title Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit. Corrupti, commodi.
+                            {product?.title}
                         </h1>
-                        <h3 className="price">Rs 999</h3>
+                        <h3 className="price">Rs {product?.price}</h3>
                         <p className="description">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Laborum quas consequatur dicta excepturi minus
-                            pariatur perferendis consectetur ducimus animi vitae
-                            nam, eum maxime, delectus soluta voluptas nemo
-                            necessitatibus rerum, temporibus omnis a sapiente
-                            sunt blanditiis? Ipsam illo fugit provident,
-                            placeat, sunt et omnis quibusdam rerum illum modi
-                            quasi dolor assumenda.
+                            {product?.desc}
                         </p>
 
                         <div className="cart-options">

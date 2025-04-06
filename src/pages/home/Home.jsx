@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.scss";
 import Hero from "../../components/hero/Hero";
 import Category from "../../components/category/Category";
 import Product from "../../components/product/Product";
+import { axiosClient } from "../../utils/axiosClient";
 
 function Home() {
+    const [categories, setCategories] = useState([]);
+    const [topProducts, setTopProducts] = useState([]);
+
+    async function fetchData() {
+        const categoryResponse = await axiosClient.get(
+            "/categories?populate=image"
+        );
+        const topProductsResponse = await axiosClient.get(
+            "/products?populate=image&filters[isTopPick][$eq]=true"
+        );
+
+        setCategories(categoryResponse.data.data);
+        setTopProducts(topProductsResponse.data.data);
+        console.log("Categories:", categoryResponse.data.data);
+        console.log("Top Products:", topProductsResponse.data.data);
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     return (
         <div className="Home">
             <Hero />
@@ -16,10 +38,9 @@ function Home() {
                     </p>
                 </div>
                 <div className="content">
-                    <Category />
-                    <Category />
-                    <Category />
-                    <Category />
+                    {categories?.map((category) => (
+                        <Category key={category.id} category={category} />
+                    ))}
                 </div>
             </section>
             <section className="collection container">
@@ -30,13 +51,9 @@ function Home() {
                     </p>
                 </div>
                 <div className="content">
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
+                    {topProducts?.map((product) => (
+                        <Product key={product.id} product={product} />
+                    ))}
                 </div>
             </section>
         </div>
