@@ -50,6 +50,22 @@
             }
         }
 
+        .empty-cart-info{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px;
+
+            .icon{
+                font-size: 3rem;
+                color: var(--secondary-text-color);
+            }
+
+            h4{
+                color : var(--secondary-text-color)
+            }
+        }
+
         .checkout-info {
             margin-top: 40px;
             padding: 8px;

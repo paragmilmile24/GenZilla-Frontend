@@ -3,39 +3,45 @@ import "./Navbar.scss";
 import { Link } from "react-router-dom";
 import { BsCart2 } from "react-icons/bs";
 import Cart from "../cart/Cart";
+import { useSelector } from "react-redux";
 
 function Navbar() {
     const [openCart, setOpenCart] = React.useState(false);
+    const cart = useSelector((state) => state.cartReducer.cart);
+    const categoriesArray = useSelector(
+        (state) => state.categoryReducer.categories
+    );
+
+    let totalItems = 0;
+    cart.forEach((item) => {
+        totalItems += item.quantity;
+    });
+    var categories = [];
+
+    if (categoriesArray.length > 3) {
+        for (let i = 0; i < 3; i++) {
+            categories.push(categoriesArray[i]);
+        }
+    } else {
+        categories = categoriesArray;
+    }
+
     return (
         <>
             <nav className="Navbar">
                 <div className="container nav-container">
                     <div className="nav-left">
                         <ul className="link-group">
-                            <li className="hover-link">
-                                <Link
-                                    className="link"
-                                    to="/category/category=comic"
-                                >
-                                    Comics
-                                </Link>
-                            </li>
-                            <li className="hover-link">
-                                <Link
-                                    className="link"
-                                    to="/category/category=shows"
-                                >
-                                    TV Shows
-                                </Link>
-                            </li>
-                            <li className="hover-link">
-                                <Link
-                                    className="link"
-                                    to="/category/category=sports"
-                                >
-                                    Sports
-                                </Link>
-                            </li>
+                            {categories?.map((category) => (
+                                <li key={category.id} className="hover-link">
+                                    <Link
+                                        className="link"
+                                        to={`/category/${category.key}`}
+                                    >
+                                        {category.title}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div className="nav-center">
@@ -49,7 +55,11 @@ function Navbar() {
                             onClick={() => setOpenCart(!openCart)}
                         >
                             <BsCart2 className="icon" />
-                            <span className="cart-count center">0</span>
+                            {totalItems > 0 && (
+                                <span className="cart-count center">
+                                    {totalItems}
+                                </span>
+                            )}
                         </div>
                     </div>
                 </div>
