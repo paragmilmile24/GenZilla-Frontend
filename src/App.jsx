@@ -11,6 +11,7 @@ import ProductDetail from "./pages/productDetail/ProductDetail";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchCategories } from "./redux/categorySlice";
+import OrderStatus from "./components/orderStatus/OrderStatus";
 
 function App() {
     const dispatch = useDispatch();
@@ -27,6 +28,10 @@ function App() {
                 <Route
                     path="/products/:productId"
                     element={<ProductDetail />}
+                />
+                <Route
+                    path="/orderstatus/:status"
+                    element={<OrderStatus />}
                 />
             </Routes>
             <Footer />
