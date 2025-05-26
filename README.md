@@ -1,7 +1,7 @@
 ## About GenZilla
 GenZilla is an ecommerce platform made for Gen Z. It has a collection of products based on the latest trends, including prints, artwork, and lifestyle items. The platform is easy to use, works well on all devices, and offers secure payment options.
 
-##Backend Repo : https://github.com/paragmilmile24/GenZilla-Backend
+## Backend Repo : https://github.com/paragmilmile24/GenZilla-Backend
 
 ## Technologies Used
 
@@ -9,7 +9,7 @@ GenZilla is an ecommerce platform made for Gen Z. It has a collection of product
 - **Backend**: Strapi, SQLite, Cloudinary
 - **Payments**: Stripe
 
-##Features
+## Features
 - Built with **React** and **Vite** for fast development and performance.
 - **Redux Toolkit** for state management with persistence using `redux-persist`.
 - **Stripe Integration** for secure payment processing.
