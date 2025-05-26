@@ -1,6 +1,8 @@
 ## About GenZilla
 GenZilla is an ecommerce platform made for Gen Z. It has a collection of products based on the latest trends, including prints, artwork, and lifestyle items. The platform is easy to use, works well on all devices, and offers secure payment options.
 
+##Backend Repo : https://github.com/paragmilmile24/GenZilla-Backend
+
 ## Technologies Used
 
 - **Frontend**: React, Redux Toolkit, Vite, SCSS
