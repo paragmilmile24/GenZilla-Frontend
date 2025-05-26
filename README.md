@@ -1,12 +1,59 @@
-# React + Vite
+## About GenZilla
+GenZilla is an ecommerce platform made for Gen Z. It has a collection of products based on the latest trends, including prints, artwork, and lifestyle items. The platform is easy to use, works well on all devices, and offers secure payment options.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Technologies Used
 
-Currently, two official plugins are available:
+- **Frontend**: React, Redux Toolkit, Vite, SCSS
+- **Backend**: Strapi, SQLite, Cloudinary
+- **Payments**: Stripe
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##Features
+- Built with **React** and **Vite** for fast development and performance.
+- **Redux Toolkit** for state management with persistence using `redux-persist`.
+- **Stripe Integration** for secure payment processing.
+- Responsive design using **SCSS** for styling.
+- Dynamic routing with **React Router**.
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+- **Node.js** (v18 or higher)
+- **npm** or **yarn**
+
+### Clone the Repository
+```bash
+git clone https://github.com/paragmilmile24/GenZilla-Frontend.git
+```
+
+### Install Dependencies
+
+```bash
+cd GenZilla-Frontend
+npm install
+```
+
+### Env file
+Create a `.env` file in the `ecommerce-website` directory:
+```properties
+VITE_SERVER_BASE_URL=http://localhost:1337/api
+VITE_SERVER_API_TOKEN=<your_strapi_api_token>
+VITE_STRIPE_PUBLISHABLE_KEY=<your_stripe_publishable_key>
+```
+
+## Running the Project
+
+### Start the Frontend
+```bash
+cd GenZilla-Frontend
+npm run dev
+```
+
+## Deployment
+
+Build the frontend for production:
+```bash
+cd GenZilla-Frontend
+npm run build
+```
+
+
